@@ -17,7 +17,12 @@ Raindrop::Raindrop(int xPos, bool startAsBlank) :
 
 void Raindrop::update(){
     for(int c = 0; c < str.size(); c++)
+    {   
+        if(c<str.size()-1 && static_cast<char>(mvinch(c+1,xPos))==' ')
+            attron(A_BOLD);
         mvaddch(c,xPos,str[str.size()-1-c]);
+        attroff(A_BOLD);
+    }
     if(rate<20)
     {       
         str.erase(0,1);
