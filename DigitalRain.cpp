@@ -1,4 +1,3 @@
-// Local
 #include "DigitalRain.h"
 #include "Raindrop.h"
 #include "ncurses.h"
@@ -6,16 +5,19 @@
 #include <thread>
 #include <chrono>
 
-DigitalRain::DigitalRain(){
-
-    std::vector<Raindrop*> raindrops;
+DigitalRain::DigitalRain(int iterations, int delay){
     for(int column=0; column<COLS; column++)
-        raindrops.push_back(new Raindrop(column,LINES));
+        rain.push_back(new Raindrop(column));
 
-    for(int refreshes=0; refreshes < 100; refreshes++){
-        for(int i=0; i<raindrops.size(); i+=2)
-            raindrops[i]->update();
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    for(int i=0; i < iterations; i++){
+        for(const auto& raindrop : rain)
+            raindrop->update();
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
         refresh();
     }
+}
+
+DigitalRain::~DigitalRain(){
+    for(const auto& raindrop : rain)
+        delete raindrop;
 }

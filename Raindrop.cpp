@@ -6,11 +6,11 @@ corresponding to a single column being displayed onscreen.
 #include <ncurses.h>
 #include <random>
 
-Raindrop::Raindrop(int xPos, int length) :
+Raindrop::Raindrop(int xPos) :
     rate{rng(1,100)},
     xPos{xPos}
 {
-    str.resize(length,' ');
+    str.resize(LINES,' ');
 }
 
 void Raindrop::update(){
