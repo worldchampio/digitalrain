@@ -5,7 +5,7 @@ class Raindrop;
 
 class DigitalRain{
 public:
-    DigitalRain(int iterations, int delay);
+    DigitalRain();
     ~DigitalRain();
 private:
     std::vector<Raindrop*> rain;

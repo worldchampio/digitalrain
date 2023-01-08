@@ -6,10 +6,12 @@ corresponding to a single column being displayed onscreen.
 #include <ncurses.h>
 #include <random>
 
-Raindrop::Raindrop(int xPos) :
+Raindrop::Raindrop(int xPos, bool startAsBlank) :
     rate{rng(1,100)},
     xPos{xPos}
 {
+    if(startAsBlank)
+        blankSpace(rng(1,LINES-LINES/7));
     str.resize(LINES,' ');
 }
 
@@ -19,13 +21,25 @@ void Raindrop::update(){
     if(rate<50)
     {       
         str.erase(0,1);
-        str.push_back(*int2Str(rng()).c_str());
+        char ch;
+        if(blank.empty())
+            ch=*int2Str(rng()).c_str();
+        else{
+            ch=blank[0];
+            blank.pop_back();
+        }
+        str.push_back(ch);
     }
     rate = rng(1,100);
 }
 
 std::string Raindrop::int2Str(int i){
     return std::move((char*)(&i));
+}
+
+void Raindrop::blankSpace(int length){
+    if(blank.empty())
+        blank.resize(length,' ');
 }
 
 int Raindrop::rng(int min, int max) 

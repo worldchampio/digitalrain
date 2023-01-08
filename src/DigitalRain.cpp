@@ -2,17 +2,19 @@
 #include "Raindrop.h"
 #include "ncurses.h"
 #include <random>
-#include <thread>
-#include <chrono>
 
-DigitalRain::DigitalRain(int iterations, int delay){
+DigitalRain::DigitalRain()
+{
     for(int column=0; column<COLS; column++)
-        rain.push_back(new Raindrop(column));
+        rain.push_back(new Raindrop(column,rand()%2));
 
-    for(int i=0; i < iterations; i++){
+    while(getch()!='q'){
         for(const auto& raindrop : rain)
+        {   
+            if(rand()%800 < 10)
+                raindrop->blankSpace(raindrop->rng(LINES/2,LINES)); 
             raindrop->update();
-        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+        }
         refresh();
     }
 }

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -O2 -g -Wall -std=c++17
+CFLAGS = -O2 -g -Wall -std=c++20
 
 SOURCES = DigitalRain.cpp Raindrop.cpp main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
