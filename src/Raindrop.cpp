@@ -18,7 +18,7 @@ Raindrop::Raindrop(int xPos, bool startAsBlank) :
 void Raindrop::update(){
     for(int c = 0; c < str.size(); c++)
         mvaddch(c,xPos,str[str.size()-1-c]);
-    if(rate<50)
+    if(rate<20)
     {       
         str.erase(0,1);
         char ch;

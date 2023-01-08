@@ -12,7 +12,7 @@ DigitalRain::DigitalRain()
         for(const auto& raindrop : rain)
         {   
             if(rand()%800 < 10)
-                raindrop->blankSpace(raindrop->rng(LINES/2,LINES)); 
+                raindrop->blankSpace(raindrop->rng(LINES/2,LINES-LINES/8)); 
             raindrop->update();
         }
         refresh();
