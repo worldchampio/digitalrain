@@ -3,7 +3,7 @@
 class Raindrop{
 public:
     Raindrop(int xPos, bool startAsBlank);
-    void update();
+    void update(int randomnum);
     int rng(int min=44, int max=123);
     void blankSpace(int length);
 private:

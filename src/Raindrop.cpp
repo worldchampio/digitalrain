@@ -15,7 +15,7 @@ Raindrop::Raindrop(int xPos, bool startAsBlank) :
     str.resize(LINES,' ');
 }
 
-void Raindrop::update(){
+void Raindrop::update(int randomnum){
     for(int c = 0; c < str.size(); c++)
     {   
         if(c<str.size()-1 && static_cast<char>(mvinch(c+1,xPos))==' ')
@@ -23,7 +23,7 @@ void Raindrop::update(){
         mvaddch(c,xPos,str[str.size()-1-c]);
         attroff(A_BOLD);
     }
-    if(rate<20)
+    if(rate<randomnum)
     {       
         str.erase(0,1);
         char ch;
@@ -35,7 +35,6 @@ void Raindrop::update(){
         }
         str.push_back(ch);
     }
-    rate = rng(1,100);
 }
 
 std::string Raindrop::int2Str(int i){
