@@ -8,7 +8,6 @@ public:
     void blankSpace(int length);
 private:
     void shiftCharacters();
-    std::string int2Str(int i);
     int rate{0};
     int xPos{0};
     std::string str;

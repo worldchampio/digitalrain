@@ -32,16 +32,12 @@ void Raindrop::shiftCharacters(){
     str.erase(0,1);
     char ch;
     if(blank.empty())
-        ch=*int2Str(rng()).c_str();
+        ch=char(rng());
     else{
         ch=blank[0];
         blank.pop_back();
     }
     str.push_back(ch);
-}
-
-std::string Raindrop::int2Str(int i){
-    return std::move((char*)(&i));
 }
 
 void Raindrop::blankSpace(int length){
